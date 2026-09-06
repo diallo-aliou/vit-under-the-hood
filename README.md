@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 - [x] **Phase 1**: Project setup & architecture design
 - [x] **Phase 2**: Patch Embedding & Positional Encodings
-- [ ] **Phase 3**: Multi-Head Self-Attention from scratch
+- [x] **Phase 3**: Multi-Head Self-Attention from scratch
 - [ ] **Phase 4**: Full ViT model assembly & validation tests
 - [ ] **Phase 5**: Training pipeline & Google Colab acceleration
 - [ ] **Phase 6**: Attention Rollout & Timelapse generation
