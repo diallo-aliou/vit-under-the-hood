@@ -26,6 +26,7 @@ jobs:
           pip install ruff pytest
           pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
           pip install einops numpy matplotlib seaborn pillow pyyaml tqdm imageio gradio
+          pip install -e .
 
       - name: Lint with Ruff
         run: |

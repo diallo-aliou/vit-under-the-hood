@@ -1,13 +1,12 @@
 """Visualization utilities for Vision Transformer patches."""
 
 from pathlib import Path
-from typing import Optional
 
 import einops
 import matplotlib.pyplot as plt
 import torch
-from PIL import Image, ImageDraw
 import torchvision.transforms as T
+from PIL import Image, ImageDraw
 
 
 def create_sample_image(image_size: int = 96) -> torch.Tensor:
@@ -41,7 +40,7 @@ def load_image(image_path: str, image_size: int = 96) -> torch.Tensor:
 def plot_patch_grid(
     image: torch.Tensor,
     patch_size: int = 8,
-    save_path: Optional[str] = "outputs/patch_grid.png",
+    save_path: str | None = "outputs/patch_grid.png",
 ) -> None:
     r"""Plot the image side-by-side with its separated spatial patches."""
     _, C, H, W = image.shape
