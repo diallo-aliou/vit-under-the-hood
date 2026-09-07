@@ -4,6 +4,9 @@ from collections.abc import Callable
 from pathlib import Path
 
 import einops
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
@@ -312,14 +315,20 @@ def plot_prediction_grid(
             fontsize=10,
             fontweight="bold",
             color=title_color,
+            pad=6,
         )
-        axes[i].axis("off")
+        for spine in axes[i].spines.values():
+            spine.set_color(title_color)
+            spine.set_linewidth(2.5)
+        axes[i].set_xticks([])
+        axes[i].set_yticks([])
 
     for j in range(num_samples, len(axes)):
         axes[j].axis("off")
 
     plt.suptitle("Model Evaluation on Test Samples (Green: Correct, Red: Error)", fontsize=13, fontweight="bold")
     plt.tight_layout()
+    fig.subplots_adjust(top=0.88, hspace=0.45, wspace=0.20)
 
     if save_path:
         out_path = Path(save_path).resolve()

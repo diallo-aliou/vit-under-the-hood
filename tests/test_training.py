@@ -98,3 +98,23 @@ def test_trainer_execution_synthetic(tmp_path: object) -> None:
     trainer.save_checkpoint(epoch=1, val_acc=val_acc, is_best=True, save_snapshot=True)
     assert (tmp_path / "epoch_001.pth").exists()
     assert (tmp_path / "best_model.pth").exists()
+
+
+def test_stl10_classes() -> None:
+    """Verify STL10_CLASSES matches the official 10 classes and ordering."""
+    from src.training.dataset import STL10_CLASSES
+
+    expected = (
+        "airplane",
+        "bird",
+        "car",
+        "cat",
+        "deer",
+        "dog",
+        "horse",
+        "monkey",
+        "ship",
+        "truck",
+    )
+    assert STL10_CLASSES == expected
+

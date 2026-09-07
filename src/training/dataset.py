@@ -13,8 +13,8 @@ STL10_CLASSES: tuple[str, ...] = (
     "cat",
     "deer",
     "dog",
-    "frog",
     "horse",
+    "monkey",
     "ship",
     "truck",
 )
