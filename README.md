@@ -35,9 +35,18 @@ The purpose of this repository is to implement ViT from scratch, compare **from-
 
 ### Installation
 ```bash
-git clone https://github.com/your-username/vit-under-the-hood.git
+git clone https://github.com/diallo-aliou/vit-under-the-hood.git
 cd vit-under-the-hood
 pip install -r requirements.txt
+pip install -e .
+```
+
+### Training & Visual Exploration (Google Colab / Local GPU)
+```bash
+# Train ViT-Tiny on STL-10 (AdamW + Cosine Warmup, 50 epochs)
+python train.py --config configs/vit_tiny_stl10.yaml --device cuda
+
+# Interactive Colab walkthrough: notebooks/01_train_stl10_colab.ipynb
 ```
 
 ---
@@ -48,7 +57,7 @@ pip install -r requirements.txt
 - [x] **Phase 2**: Patch Embedding & Positional Encodings
 - [x] **Phase 3**: Multi-Head Self-Attention from scratch
 - [x] **Phase 4**: Full ViT model assembly & validation tests
-- [ ] **Phase 5**: Training pipeline & Google Colab acceleration
+- [x] **Phase 5**: Training pipeline, visual exploration & Google Colab acceleration
 - [ ] **Phase 6**: Attention Rollout & Timelapse generation
 - [ ] **Phase 7**: Head specialization and Domain Gap analysis
 - [ ] **Phase 8**: Interactive visualization interface & results write-up
