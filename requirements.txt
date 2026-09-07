@@ -10,3 +10,4 @@ tqdm>=4.65.0
 pytest>=7.3.0
 imageio>=2.30.0
 gradio>=4.0.0
+torchinfo>=1.8.0

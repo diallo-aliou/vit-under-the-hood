@@ -23,7 +23,8 @@ dependencies = [
     "pyyaml>=6.0",
     "tqdm>=4.65.0",
     "imageio>=2.30.0",
-    "gradio>=4.0.0"
+    "gradio>=4.0.0",
+    "torchinfo>=1.8.0"
 ]
 
 [project.optional-dependencies]

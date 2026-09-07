@@ -1,0 +1,40 @@
+# Vision Transformer (ViT-Tiny) configuration for STL-10 dataset
+
+model:
+  image_size: 96
+  patch_size: 8
+  in_channels: 3
+  num_classes: 10
+  embed_dim: 192
+  depth: 8
+  num_heads: 3
+  mlp_ratio: 4.0
+  qkv_bias: true
+  drop_rate: 0.1
+  attn_drop_rate: 0.0
+
+training:
+  epochs: 50
+  batch_size: 64
+  lr: 5.0e-4
+  min_lr: 1.0e-6
+  weight_decay: 0.05
+  warmup_epochs: 5
+  label_smoothing: 0.1
+  clip_grad_norm: 1.0
+  seed: 42
+
+data:
+  dataset_name: "stl10"
+  data_dir: "data"
+  num_workers: 2
+
+checkpoints:
+  save_dir: "outputs/checkpoints"
+  save_every_epoch: true
+  best_model_name: "best_model.pth"
+
+logging:
+  log_interval: 10
+  history_file: "outputs/history.json"
+  plot_save_dir: "outputs"
