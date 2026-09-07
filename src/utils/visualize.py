@@ -5,8 +5,6 @@ from pathlib import Path
 
 import einops
 import matplotlib
-
-matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
@@ -74,6 +72,25 @@ def load_image(image_path: str, image_size: int = 96) -> torch.Tensor:
     img = Image.open(image_path).convert("RGB")
     transform = T.Compose([T.Resize((image_size, image_size)), T.ToTensor()])
     return transform(img).unsqueeze(0)
+
+
+
+def _display_and_close(fig: plt.Figure, save_path: str | None = None) -> None:
+    """Helper to save and/or display a figure across Colab, Jupyter, CLI, and test environments."""
+    if save_path:
+        out_path = Path(save_path).resolve()
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(str(out_path), dpi=150, bbox_inches="tight")
+        print(f"Plot saved to {save_path}")
+
+    backend = matplotlib.get_backend().lower()
+    # Always display in Jupyter/Colab inline mode or interactive CLI
+    if "inline" in backend or "ipympl" in backend or "nbagg" in backend or matplotlib.is_interactive():
+        plt.show()
+    elif not save_path:
+        plt.show()
+
+    plt.close(fig)
 
 
 def plot_patch_grid(
@@ -145,14 +162,7 @@ def plot_patch_grid(
     ax_grid.axis("off")
 
     plt.tight_layout()
-    if save_path:
-        out_path = Path(save_path).resolve()
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        plt.savefig(str(out_path), dpi=150, bbox_inches="tight")
-        print(f"Patch grid saved to {save_path}")
-    else:
-        plt.show()
-    plt.close(fig)
+    _display_and_close(fig, save_path)
 
 
 def plot_dataset_samples(
@@ -199,14 +209,7 @@ def plot_dataset_samples(
     plt.suptitle("STL-10 Dataset Samples (96x96 RGB)", fontsize=13, fontweight="bold", y=0.98)
     plt.tight_layout()
 
-    if save_path:
-        out_path = Path(save_path).resolve()
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        plt.savefig(str(out_path), dpi=150, bbox_inches="tight")
-        print(f"Dataset sample grid saved to {save_path}")
-    else:
-        plt.show()
-    plt.close(fig)
+    _display_and_close(fig, save_path)
 
 
 def plot_augmentation_examples(
@@ -251,14 +254,7 @@ def plot_augmentation_examples(
     plt.suptitle("Data Augmentation Dynamics for ViT Regularization", fontsize=12, fontweight="bold")
     plt.tight_layout()
 
-    if save_path:
-        out_path = Path(save_path).resolve()
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        plt.savefig(str(out_path), dpi=150, bbox_inches="tight")
-        print(f"Augmentation grid saved to {save_path}")
-    else:
-        plt.show()
-    plt.close(fig)
+    _display_and_close(fig, save_path)
 
 
 def plot_prediction_grid(
@@ -330,14 +326,7 @@ def plot_prediction_grid(
     plt.tight_layout()
     fig.subplots_adjust(top=0.88, hspace=0.45, wspace=0.20)
 
-    if save_path:
-        out_path = Path(save_path).resolve()
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        plt.savefig(str(out_path), dpi=150, bbox_inches="tight")
-        print(f"Prediction grid saved to {save_path}")
-    else:
-        plt.show()
-    plt.close(fig)
+    _display_and_close(fig, save_path)
 
 
 def plot_prediction_topk(
@@ -388,14 +377,7 @@ def plot_prediction_topk(
         ax_bar.text(val + 1.5, bar.get_y() + bar.get_height() / 2, f"{val:.1f}%", va="center", fontsize=9, fontweight="bold")
 
     plt.tight_layout()
-    if save_path:
-        out_path = Path(save_path).resolve()
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        plt.savefig(str(out_path), dpi=150, bbox_inches="tight")
-        print(f"Top-k prediction plot saved to {save_path}")
-    else:
-        plt.show()
-    plt.close(fig)
+    _display_and_close(fig, save_path)
 
 
 def plot_attention_heads(
@@ -463,14 +445,7 @@ def plot_attention_heads(
     )
     plt.tight_layout()
 
-    if save_path:
-        out_path = Path(save_path).resolve()
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        plt.savefig(str(out_path), dpi=150, bbox_inches="tight")
-        print(f"Attention heads plot saved to {save_path}")
-    else:
-        plt.show()
-    plt.close(fig)
+    _display_and_close(fig, save_path)
 
 
 def plot_attention_layer_progression(
@@ -528,11 +503,4 @@ def plot_attention_layer_progression(
     plt.suptitle("Attention Depth Progression — From Diffuse Context to Semantic Salience", fontsize=12, fontweight="bold", y=0.98)
     plt.tight_layout()
 
-    if save_path:
-        out_path = Path(save_path).resolve()
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        plt.savefig(str(out_path), dpi=150, bbox_inches="tight")
-        print(f"Layer progression plot saved to {save_path}")
-    else:
-        plt.show()
-    plt.close(fig)
+    _display_and_close(fig, save_path)
