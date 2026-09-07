@@ -83,11 +83,18 @@ def _display_and_close(fig: plt.Figure, save_path: str | None = None) -> None:
         fig.savefig(str(out_path), dpi=150, bbox_inches="tight")
         print(f"Plot saved to {save_path}")
 
-    backend = matplotlib.get_backend().lower()
-    # Always display in Jupyter/Colab inline mode or interactive CLI
-    if "inline" in backend or "ipympl" in backend or "nbagg" in backend or matplotlib.is_interactive():
-        plt.show()
-    elif not save_path:
+    is_displayed = False
+    try:
+        from IPython import get_ipython
+        from IPython.display import display
+
+        if get_ipython() is not None:
+            display(fig)
+            is_displayed = True
+    except Exception:
+        pass
+
+    if not is_displayed and matplotlib.get_backend().lower() != "agg":
         plt.show()
 
     plt.close(fig)
