@@ -49,6 +49,14 @@ python train.py --config configs/vit_tiny_stl10.yaml --device cuda
 # Interactive Colab walkthrough: notebooks/01_train_stl10_colab.ipynb
 ```
 
+### Attention Rollout & Dynamics Timelapse
+```bash
+# Generate 50-epoch attention evolution GIF & progression strip across saved snapshots
+python -m src.experiments.timelapse --checkpoints outputs/checkpoints --output outputs/timelapse_attention.gif
+
+# Interactive Rollout & Timelapse notebook: notebooks/02_attention_timelapse.ipynb
+```
+
 ---
 
 ## Roadmap
@@ -58,6 +66,6 @@ python train.py --config configs/vit_tiny_stl10.yaml --device cuda
 - [x] **Phase 3**: Multi-Head Self-Attention from scratch
 - [x] **Phase 4**: Full ViT model assembly & validation tests
 - [x] **Phase 5**: Training pipeline, visual exploration & Google Colab acceleration
-- [ ] **Phase 6**: Attention Rollout & Timelapse generation
+- [x] **Phase 6**: Attention Rollout & Timelapse generation
 - [ ] **Phase 7**: Head specialization and Domain Gap analysis
 - [ ] **Phase 8**: Interactive visualization interface & results write-up
