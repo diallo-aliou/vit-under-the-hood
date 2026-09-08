@@ -49,7 +49,7 @@ select = [
 ignore = ["E501"]  # line length handled by formatter
 
 [tool.ruff.lint.per-file-ignores]
-"notebooks/*" = ["E402", "F401", "F841"]
+"notebooks/*" = ["E402", "F401", "F841", "I001", "W293"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
