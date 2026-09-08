@@ -12,6 +12,11 @@ The purpose of this repository is to implement ViT from scratch, compare **from-
 - **Head Specialization & Ablation**: Analyzing whether different attention heads specialize in local vs. global features, and measuring the drop in accuracy when individual heads are disabled.
 - **Photo vs. Sketch Generalization**: Testing how well the model handles simple edge sketches compared to natural photos to evaluate its reliance on texture vs. shape.
 
+### Visual Attention Emergence Across Training (50 Epochs on STL-10)
+
+![ViT Attention Dynamics Timelapse](outputs/timelapse_progression.png)
+*Attention Rollout ([Abnar & Zuidema, 2020](https://arxiv.org/abs/2005.00928)) tracked across 50 training epochs on STL-10. Attention transitions from diffuse edge noise (Epoch 1, 28.3% Val Acc) to sharp, localized semantic focus on the subject (Epoch 50, 60.9% Val Acc).*
+
 ---
 
 ## Project Structure
