@@ -90,6 +90,16 @@ python -m src.experiments.timelapse --checkpoints outputs/checkpoints --output o
 # Interactive Head Surgery, ImageNet Transfer & Texture Bias notebook: notebooks/03_head_specialization_and_transfer.ipynb
 ```
 
+### 🔬 Interactive Explorer (Gradio)
+```bash
+# Launch the interactive web interface locally
+python app.py
+
+# Or from Google Colab (generates a public share link):
+# demo.launch(share=True)
+```
+5 interactive tabs: **Attention Rollout Explorer** · **Head Surgery Lab** · **Representation Duel** · **Texture vs. Shape Bias** · **Model Architecture Card**
+
 ---
 
 ## Roadmap
@@ -101,4 +111,5 @@ python -m src.experiments.timelapse --checkpoints outputs/checkpoints --output o
 - [x] **Phase 5**: Training pipeline, visual exploration & Google Colab acceleration
 - [x] **Phase 6**: Attention Rollout & Timelapse generation
 - [x] **Phase 7**: Head specialization, Transfer Learning & Domain Gap analysis
-- [ ] **Phase 8**: Interactive visualization interface & results write-up
+- [x] **Phase 8**: Interactive Gradio visualization interface & results write-up
+
