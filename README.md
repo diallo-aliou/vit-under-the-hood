@@ -62,6 +62,11 @@ python -m src.experiments.timelapse --checkpoints outputs/checkpoints --output o
 # Interactive Rollout & Timelapse notebook: notebooks/02_attention_timelapse.ipynb
 ```
 
+### Head Specialization, Transfer Learning & Domain Gap
+```bash
+# Interactive Head Surgery, ImageNet Transfer & Texture Bias notebook: notebooks/03_head_specialization_and_transfer.ipynb
+```
+
 ---
 
 ## Roadmap
@@ -72,5 +77,5 @@ python -m src.experiments.timelapse --checkpoints outputs/checkpoints --output o
 - [x] **Phase 4**: Full ViT model assembly & validation tests
 - [x] **Phase 5**: Training pipeline, visual exploration & Google Colab acceleration
 - [x] **Phase 6**: Attention Rollout & Timelapse generation
-- [ ] **Phase 7**: Head specialization and Domain Gap analysis
+- [x] **Phase 7**: Head specialization, Transfer Learning & Domain Gap analysis
 - [ ] **Phase 8**: Interactive visualization interface & results write-up
