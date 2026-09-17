@@ -19,6 +19,29 @@ The purpose of this repository is to implement ViT from scratch, compare **from-
 
 ---
 
+### Empirical Findings & Interpretability (Phase 7)
+
+#### 1. Receptive Field & Head Specialization
+![ViT Head Attention Distances](outputs/head_attention_distances.png)
+*Mean spatial attention distance in pixels across all 8 layers and 3 heads. Early heads (e.g. L2-H2: 43.0 px) behave like localized convolutional receptive fields, whereas deeper heads (L5-H2: 52.0 px, L7-H3: 51.3 px) attend globally across the entire $96 \times 96$ canvas.*
+
+#### 2. Systematic Head Ablation Surgery & Multi-Head Pruning
+| Single-Head Ablation Impact ($\Delta \text{Acc}$) | Greedy Pruning Retention Curve |
+| :---: | :---: |
+| ![Head Ablation Matrix](outputs/head_ablation_matrix.png) | ![Head Pruning Curve](outputs/head_pruning_curve.png) |
+
+*Left: Drop in Top-1 accuracy ($\Delta \text{Acc}$) when disabling individual attention heads (Baseline: 62.03%). Two mission-critical heads emerge: **L1-H3** (+6.88% drop) and **L3-H1** (+6.41% drop), whereas **L4-H3** exhibits 0.00% impact. Right: Greedy pruning shows that up to **20% of heads (5/24)** can be pruned with minimal degradation (<2.2% loss).*
+
+#### 3. Representation Duel: From-Scratch ViT vs. ImageNet Pre-trained ViT
+![Representation Duel](outputs/from_scratch_vs_transfer_attention.png)
+*Attention rollout comparison on an unseen STL-10 test sample. The from-scratch ViT-Tiny (3.63M params, 61.1% Acc) disperses attention across high-contrast texture patches, whereas the pre-trained ViT-B/16 (86M params, ~95% Acc) achieves holistic anatomical segmentation of the subject.*
+
+#### 4. Domain Gap & Texture vs. Shape Bias
+![Domain Gap Analysis](outputs/photo_vs_sketch_domain_gap.png)
+*Domain shift evaluation via Sobel edge sketches. Stripping texture and color drops accuracy from **60.62%** to **16.88%** (**Shape Retention Index: 27.8%**), demonstrating the from-scratch model's strong reliance on surface textures.*
+
+---
+
 ## Project Structure
 
 ```text
