@@ -158,9 +158,18 @@ def load_transfer_model() -> tuple[torch.nn.Module, str]:
     model = build_transfer_vit(
         num_classes=10, pretrained=True, freeze_backbone=True, device=_device,
     )
+    
+    ckpt_path = Path("outputs/checkpoints/best_transfer_model.pth")
+    if ckpt_path.exists():
+        state = torch.load(ckpt_path, map_location=_device, weights_only=False)
+        model.load_state_dict(state)
+        msg = f"✅ Fine-Tuned ViT-B/16 loaded from `{ckpt_path.name}` (~86M params)"
+    else:
+        msg = "⚠️ Untrained head! ImageNet ViT-B/16 loaded without fine-tuning (~86M params)"
+
     model.eval()
     _model_transfer = model
-    return model, "✅ ImageNet ViT-B/16 loaded (~86M params)"
+    return model, msg
 
 
 # ---------------------------------------------------------------------------
